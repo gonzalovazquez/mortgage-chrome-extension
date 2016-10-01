@@ -1,0 +1,23 @@
+{
+    "manifest_version": 2,
+
+    "name": "TD Extension",
+    "description": "This extensions enables TD features on any website",
+    "version": "1.0",
+
+    "browser_action": {
+        "default_icon": "td-icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Click here!"
+    },
+    "permissions": [
+        "activeTab",
+        "https://ajax.googleapis.com/",
+        "contextMenus"
+    ],
+    "icons": {
+        "16": "td-icon.png",
+        "48": "td-icon.png",
+        "128": "td-icon.png"
+    }
+}
