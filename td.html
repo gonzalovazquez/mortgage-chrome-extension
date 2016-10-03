@@ -6,11 +6,13 @@
  -->
 <html>
   <head>
+    <script src="calculator.js"></script>
     <title>TD Extension</title>
     <style>
       body {
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
+        background-color: #333333;
       }
       #status {
         /* avoid an excessively wide status text */
@@ -29,7 +31,8 @@
      -->
   </head>
   <body>
-    <iframe src="https://www.td.com/ca/markets-research/stocks/stocks.jsp" width="500" height="500"></iframe>
+    <p id="context">WHY</p>
+    <h1 id="message"></h1>
   </body>
 </html>
 
