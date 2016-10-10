@@ -1,8 +1,5 @@
 $(document).ready(function () {
-    console.log('Content script loaded Jquery');
- 
-    var firstHref = $("a[href^='http']").eq(0).attr("href");
-    console.info(firstHref);
+    console.log('Content.js loaded - access to page');
  
     // Listening to message from icon click handler
     chrome.runtime.onMessage.addListener(
@@ -54,14 +51,7 @@ $(document).ready(function () {
  
                 document.documentElement.appendChild(iframe);
                 iframe.contentDocument.body.innerHTML = widgetHtml;
- 
-                console.log(iframe);
             }
         }
     );
- 
-    function createCalculator(message) {
- 
-       
-    }
 }, true); 
