@@ -1,0 +1,11 @@
+span.td-mortgage::after {
+  content: 'TD';
+  margin-left: 0.25em;
+  color: white;
+  background-color: green;
+}
+
+span.td-mortgage:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
