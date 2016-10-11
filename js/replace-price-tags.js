@@ -7,5 +7,9 @@ $(document).ready(function() {
   document.body.innerHTML = priceTags.reduce(function(innerHtml, priceTag) {
     return innerHtml.replace(new RegExp('\\' + priceTag, 'g'), "<span class='td-mortgage'>" + priceTag + "</span>");
   }, document.body.innerHTML);
-  $('span.td-mortgage').click(function() {alert('Show mortage calculator')});
+  $('span.td-mortgage').click(function() {
+      console.log("Clicked TD icon");
+      chrome.runtime.sendMessage({type:"price_clicked"});
+      //alert('Show mortage calculator');
+  });
 });

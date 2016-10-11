@@ -12,6 +12,7 @@
         "activeTab",
         "contextMenus",
         "tabs",
+        "storage",
         "http://*/*",
         "https://*/*"
     ],
@@ -38,9 +39,16 @@
             ],
             "css": ["css/replace-price-tags.css"],
             "js": ["js/jquery-3.1.1.min.js", "js/replace-price-tags.js"]
+        },
+        {
+          "matches": [
+            "<all_urls>"
+          ],
+          "js": ["js/jquery-3.1.1.min.js", "js/save-and-compare.js"]
         }
     ],
     "web_accessible_resources": [
-        "td.html"
+        "td.html",
+        "html/save-and-compare-dialog.html"
     ]
 }

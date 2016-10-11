@@ -36,3 +36,20 @@ chrome.contextMenus.create({
   "contexts": ["page", "selection", "image", "link"],
   "onclick" : clickHandler
 });
+
+chrome.runtime.onMessage.addListener(function(request) {
+    if (request.type === "price_clicked") {
+        chrome.tabs.create({
+            url: chrome.extension.getURL('save-and-compare-dialog.html'),
+            active: false
+        }, function(tab) {
+            // After the tab has been created, open a window to inject the tab
+            chrome.windows.create({
+                tabId: tab.id,
+                type: 'popup',
+                focused: true
+                // incognito, top, left, ...
+            });
+        });
+    }
+});
