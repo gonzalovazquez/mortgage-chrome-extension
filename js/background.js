@@ -1,5 +1,9 @@
 console.log('Background script loaded');
 
+    var closeModal = function() {
+      console.log('closing modal');
+    };
+
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function(tab) {
     // Send a message to the active tab
@@ -18,21 +22,3 @@ chrome.runtime.onMessage.addListener(
     }
   }
 );
-
-// Send seletected to content page
-var clickHandler = function(e) {
-  var selectedText = e.selectionText;
-  console.log(selectedText);
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    var activeTab = tabs[0];
-    console.log('Sending to', activeTab);
-    chrome.tabs.sendMessage(activeTab.id, {"message": selectedText});
-  });
-};
-
-// Add Context Menu
-chrome.contextMenus.create({
-  "title": "TD This",
-  "contexts": ["page", "selection", "image", "link"],
-  "onclick" : clickHandler
-});
