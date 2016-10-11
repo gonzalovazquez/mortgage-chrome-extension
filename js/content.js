@@ -1,10 +1,6 @@
 $(document).ready(function () {
     console.log('Content.js loaded - access to page');
 
-    var closeModal = function() {
-      console.log('closing modal');
-    };
- 
     // Listening to message from icon click handler
     chrome.runtime.onMessage.addListener(
         function(request, sender, sendResponse) {
