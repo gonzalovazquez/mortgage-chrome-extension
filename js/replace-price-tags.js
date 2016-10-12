@@ -1,4 +1,14 @@
 $(document).ready(function() {
+  document.body.innerHTML = document.body.innerHTML + ('<div id="myModal" class="modal"><div class="modal-content"><h1 id="priceTag"></h1></div></div>')
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target ==   document.getElementById('myModal')) {
+      $('#myModal').css('display', 'none');
+    }
+}
+
   // TODO: Do this everytime document changes
   // TODO: improve filter
   var priceTags = document.body.innerText.split(/\s+/)
@@ -11,17 +21,12 @@ $(document).ready(function() {
   $('span.td-mortgage').click(function() {
     var priceTag = $(event.target).text();
     console.log(priceTag);
-    createCalculator(priceTag);
+
+    $('#priceTag').text(priceTag);
+    document.getElementById('myModal').style.display = 'block';
   });
 
-  function createCalculator(price) {
-    var container = document.createElement('div');
-    container.classList.add("container");
-
-    document.documentElement.appendChild(container);
-    $('.container').append("<h1 class='title'> Mortgage Calculator </h1><p class='price'>" + price + "</p><a class='closeWin' href='#' title='Close window'>Close window</a>");
-
-    // Append scripts
-    $('head').append("<script type='text/javascript'>" + "$('.closeWin').click(function() { console.log('I am being clicked');}); " + "</" + "script>");
-  }
+  $('#priceTag').click(function() {
+    alert('you clicked me')
+  })
 });

@@ -13,8 +13,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 // Listen to the event of opening a new tab from content
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if( request.message === "open_new_tab" ) {
-      chrome.tabs.create({"url": request.url});
+    console.log('called');
+    console.log(request);
+    switch (request.message) {
+      case "open_new_tab":
+        chrome.tabs.create({"url": request.url});
+        break;
+      case "mortgage_calculator":
+        console.log("CALCULATOR");
+        break;
+      default:
+
     }
   }
 );
