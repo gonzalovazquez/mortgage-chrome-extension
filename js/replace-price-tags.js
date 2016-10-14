@@ -1,13 +1,15 @@
 $(document).ready(function() {
+
+  // Create DOM for calculator
   document.body.innerHTML = document.body.innerHTML + ('<div id="myModal" class="modal"><div class="modal-content"><h1 id="priceTag"></h1></div></div>')
 
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target ==   document.getElementById('myModal')) {
-      $('#myModal').css('display', 'none');
-    }
-}
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target ==   document.getElementById('myModal')) {
+        $('#myModal').css('display', 'none');
+      }
+  }
 
   // TODO: Do this everytime document changes
   // TODO: improve filter
