@@ -1,3 +1,5 @@
+/* Styles for action */
+
 span.td-mortgage::after {
   content: 'TD';
   margin-left: 0.25em;
@@ -10,27 +12,26 @@ span.td-mortgage:hover {
   cursor: pointer;
 }
 
-div.container {
-  width: 400px;
-  height: 400px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background:rgba(201, 201, 201, 0.88);
-  z-index: 10000;
-  border: 1px solid;
-  border-radius: 10px;
-  margin: 10px;
-  padding: 20px;
-}
+/* Custom style for modal */
 
 h1.title {
-  text-transform: uppercase;
-  font-size: 20px;
-  font-family: Helvetica;
+  padding-top: 30px;
+  margin-bottom: 0;
 }
 
-p.price {
-  color: green;
+img.td-logo {
+  width: 50px;
+  top: 15px;
+  position: absolute;
+  right: 35px;
 }
 
+span.banner {
+  background-color: #54b948;
+  width: 470px;
+  height: 50px;
+  position: absolute;
+  top: 12px;
+  padding-right: 30px;
+  left: 0;
+}

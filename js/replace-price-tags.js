@@ -3,8 +3,33 @@ $(document).ready(function() {
   // Create DOM for calculator
   document.body.innerHTML = document.body.innerHTML + (
     '<div id="ex1" style="display:none;">' +
-    '<p>Thanks for clicking.  That felt good.  <a href="#" rel="modal:close">Close</a> or press ESC</p>' +
-    '<h1 id="priceTag"></h1>' +
+    '<h1 class="title">Mortgage Calculator</h1>' +
+    '<span class="banner"></span>' + 
+    '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
+    '<h4 id="balance"></h4>' +
+      '<p><strong>What would you like to calculate?</p>'+
+      '<div>'+
+      '  <label for="balance">Loan balance</label>'+
+      '  <input name="balance" id="balance" type="text" />'+
+     ' </div>'+
+      '<div>'+
+     '   <label for="rate">Interest rate (%)</label>'+
+     '   <input name="rate" id="rate" type="text" />'+
+     ' </div>'+
+     ' <div>'+
+     '   <label for="term">Loan term (years)</label>'+
+     '   <input name="term" id="term" type="text" />'+
+     ' </div>'+
+     ' <div>'+
+     '   <label for="period">Period</label>'+
+     '   <select name="period" id="period">'+
+     '     <option>Select</option>'+
+     '     <option value="12">Monthly</option>'+
+     '     <option value="6">Bimonthly</option>'+
+     '   </select>'+
+     ' </div>'+
+     ' <p><input type="submit" id="submit" name="submit" value="Calculate" /></p>'+ 
+     ' <p><input type="submit" id="save" name="save" value="Save" /></p>'+
     '</div>'
     );
 
@@ -19,7 +44,7 @@ $(document).ready(function() {
 
   // Grab price and mouse event and insert into DOM modal
   $('span.td-mortgage').click(function() {
-    $('#priceTag').text($(event.target).text());
+    $('input#balance').val($(event.target).text());
   });
 
   // Functions for Modal 
