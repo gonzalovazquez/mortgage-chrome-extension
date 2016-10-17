@@ -50,28 +50,25 @@ $(document).ready(function() {
 
   // Calculate Mortgage
   $('#td-calculate').click(function() {
-    $('#td-results').show();
+
     //TODO: Improve mortgage calculation
-    var principalAmount = parseInt($('input#td-balance').val().replace(/,/g, "").substring(1));
+    var principalAmount = parseInt($('input#td-balance').val().replace(/,/g, "").substring(1)),
         interestRate = ($('#td-rate').val() / 100) / 12,
         period = $('#td-period').val(),
         years = $('#td-term').val(),
         monthlyPayments = 0,
         numberOfPayments = years * period;
 
-    console.log('Principal Amount ',principalAmount);
-    console.log('Interest Rate ', interestRate);
-    console.log('Term ', years);
-    console.log('Period ', period);
-    console.log('Number of Payments', numberOfPayments);
-
-
-    var left = interestRate * Math.pow((1 + interestRate), numberOfPayments);
-    var right = Math.pow(1 + interestRate, numberOfPayments) - 1;
-    numberOfPayments = parseInt(principalAmount * (left / right));
+    var leftSideofEquation = interestRate * Math.pow((1 + interestRate), numberOfPayments);
+    var rightSideofEquation = Math.pow(1 + interestRate, numberOfPayments) - 1;
+    numberOfPayments = parseInt(principalAmount * (leftSideofEquation / rightSideofEquation));
 
     // Change value dynamically
+    //TODO: Add comma separation
     $('span.td-amount').text('$' + numberOfPayments);
+
+    // Show monthly payments  
+    $('#td-results').show();
 
   });
 
