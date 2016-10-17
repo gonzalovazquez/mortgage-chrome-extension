@@ -52,11 +52,29 @@ $(document).ready(function() {
   $('#calculate').click(function() {
     $('#results').show();
     //TODO: Implement mortgage calculation
+    var principalAmount = parseInt($('input#balance').val().replace(/,/g, "").substring(1));
+        interestRate = ($('#rate').val() / 100) / 12,
+        period = $('#period').val(),
+        years = $('#term').val(),
+        monthlyPayments = 0,
+        numberOfPayments = years / period;
+
+    console.log('Principal Amount ',principalAmount);
+    console.log('Interest Rate ', interestRate);
+    console.log('Term ', years);
+    console.log('Period ', period);
+    console.log('Number of Payments', numberOfPayments);
+
+
+    var left = interestRate * Math.pow((1 + interestRate), numberOfPayments);
+    var right = Math.pow(1 + interestRate, numberOfPayments) - 1;
+    numberOfPayments = parseInt(principalAmount * (left / right));
+
   });
 
   // Save Research
   $('#save').click(function() {
-    alert('Saved')!
+    alert('Saved');
     //TODO: Implement save function
   });
 });
