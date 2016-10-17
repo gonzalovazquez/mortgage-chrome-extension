@@ -9,27 +9,28 @@ $(document).ready(function() {
     '<h4 id="balance"></h4>' +
       '<p><strong>What would you like to calculate?</p>'+
       '<div>'+
-      '  <label for="balance">Loan balance</label>'+
+      '  <label for="balance" class="mortgage-label">Loan balance</label>'+
       '  <input name="balance" id="balance" type="text" />'+
      ' </div>'+
       '<div>'+
-     '   <label for="rate">Interest rate (%)</label>'+
+     '   <label for="rate" class="mortgage-label">Interest rate (%)</label>'+
      '   <input name="rate" id="rate" type="text" />'+
      ' </div>'+
      ' <div>'+
-     '   <label for="term">Loan term (years)</label>'+
+     '   <label for="term" class="mortgage-label">Loan term (years)</label>'+
      '   <input name="term" id="term" type="text" />'+
      ' </div>'+
      ' <div>'+
-     '   <label for="period">Period</label>'+
+     '   <label for="period" class="mortgage-label">Period</label>'+
      '   <select name="period" id="period">'+
      '     <option>Select</option>'+
      '     <option value="12">Monthly</option>'+
      '     <option value="6">Bimonthly</option>'+
      '   </select>'+
      ' </div>'+
-     ' <p><input type="submit" id="submit" name="submit" value="Calculate" /></p>'+ 
-     ' <p><input type="submit" id="save" name="save" value="Save" /></p>'+
+     '<button class="btn btn-2 btn-2a btn-fl" id="calculate">Calculate</button>' +
+     '<button class="btn btn-2 btn-2a" id="save">Save</button>' +
+     '<div id="results"><h3>Your monthly payments are:<span class="amount">$500 per month</span></h3></div>' +
     '</div>'
     );
 
@@ -47,8 +48,15 @@ $(document).ready(function() {
     $('input#balance').val($(event.target).text());
   });
 
-  // Functions for Modal 
-  $('#priceTag').click(function() {
-    alert('you clicked me')
+  // Calculate Mortgage
+  $('#calculate').click(function() {
+    $('#results').show();
+    //TODO: Implement mortgage calculation
+  });
+
+  // Save Research
+  $('#save').click(function() {
+    alert('Saved')!
+    //TODO: Implement save function
   });
 });

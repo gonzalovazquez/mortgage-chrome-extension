@@ -15,8 +15,10 @@ span.td-mortgage:hover {
 /* Custom style for modal */
 
 h1.title {
-  padding-top: 30px;
-  margin-bottom: 0;
+  margin-top: 2px;
+  padding-top: 0px;
+  margin-bottom: 15px;
+  color: white;
 }
 
 img.td-logo {
@@ -27,6 +29,7 @@ img.td-logo {
 }
 
 span.banner {
+  z-index: -10000;
   background-color: #54b948;
   width: 470px;
   height: 50px;
@@ -34,4 +37,68 @@ span.banner {
   top: 12px;
   padding-right: 30px;
   left: 0;
+}
+
+label.mortgage-label {
+  width: 150px;
+  display: inline-block;
+}
+
+div#results {
+  display: none;
+}
+
+span.amount {
+  color: #54b948;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+/* Button 2 */
+.btn {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 60px;
+    display: inline-block;
+    margin: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-2 {
+	background: #2DB94D;
+	color: #fff;
+	box-shadow: 0 6px #3F6B40;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+/* Button 2a */
+.btn-2a {
+	border-radius: 0 0 5px 5px;
+}
+
+.btn-fl {
+    padding: 10px 30px 10px 30px;
+}
+
+.btn-2a:hover {
+	box-shadow: 0 4px #3F6B40;
+	top: 2px;
+}
+
+.btn-2a:active {
+	box-shadow: 0 0 #3F6B40;
+	top: 6px;
 }
