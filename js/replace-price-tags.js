@@ -3,34 +3,34 @@ $(document).ready(function() {
   // Create DOM for calculator
   document.body.innerHTML = document.body.innerHTML + (
     '<div id="ex1" style="display:none;">' +
-    '<h1 class="title">Mortgage Calculator</h1>' +
-    '<span class="banner"></span>' + 
+    '<h1 class="td-title">Mortgage Calculator</h1>' +
+    '<span class="td-banner"></span>' + 
     '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
-    '<h4 id="balance"></h4>' +
+    '<h4 id="td-balance"></h4>' +
       '<p><strong>What would you like to calculate?</p>'+
       '<div>'+
-      '  <label for="balance" class="mortgage-label">Loan balance</label>'+
-      '  <input name="balance" id="balance" type="text" />'+
+      '  <label for="balance" class="td-mortgage-label">Loan balance</label>'+
+      '  <input name="balance" id="td-balance" type="text" />'+
      ' </div>'+
       '<div>'+
-     '   <label for="rate" class="mortgage-label">Interest rate (%)</label>'+
-     '   <input name="rate" id="rate" type="text" />'+
+     '   <label for="rate" class="td-mortgage-label">Interest rate (%)</label>'+
+     '   <input name="rate" id="td-rate" type="text" />'+
      ' </div>'+
      ' <div>'+
-     '   <label for="term" class="mortgage-label">Loan term (years)</label>'+
-     '   <input name="term" id="term" type="text" />'+
+     '   <label for="term" class="td-mortgage-label">Loan term (years)</label>'+
+     '   <input name="term" id="td-term" type="text" />'+
      ' </div>'+
      ' <div>'+
-     '   <label for="period" class="mortgage-label">Period</label>'+
-     '   <select name="period" id="period">'+
+     '   <label for="period" class="td-mortgage-label">Period</label>'+
+     '   <select name="period" id="td-period">'+
      '     <option>Select</option>'+
      '     <option value="12">Monthly</option>'+
      '     <option value="6">Bimonthly</option>'+
      '   </select>'+
      ' </div>'+
-     '<button class="btn btn-2 btn-2a btn-fl" id="calculate">Calculate</button>' +
-     '<button class="btn btn-2 btn-2a" id="save">Save</button>' +
-     '<div id="results"><h3>Your monthly payments are:<span class="amount">$500 per month</span></h3></div>' +
+     '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
+     '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
+     '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount">$500 per month</span></h3></div>' +
     '</div>'
     );
 
@@ -45,17 +45,17 @@ $(document).ready(function() {
 
   // Grab price and mouse event and insert into DOM modal
   $('span.td-mortgage').click(function() {
-    $('input#balance').val($(event.target).text());
+    $('input#td-balance').val($(event.target).text());
   });
 
   // Calculate Mortgage
-  $('#calculate').click(function() {
-    $('#results').show();
+  $('#td-calculate').click(function() {
+    $('#td-results').show();
     //TODO: Implement mortgage calculation
-    var principalAmount = parseInt($('input#balance').val().replace(/,/g, "").substring(1));
-        interestRate = ($('#rate').val() / 100) / 12,
-        period = $('#period').val(),
-        years = $('#term').val(),
+    var principalAmount = parseInt($('input#td-balance').val().replace(/,/g, "").substring(1));
+        interestRate = ($('#td-rate').val() / 100) / 12,
+        period = $('#td-period').val(),
+        years = $('#td-term').val(),
         monthlyPayments = 0,
         numberOfPayments = years / period;
 
@@ -73,7 +73,7 @@ $(document).ready(function() {
   });
 
   // Save Research
-  $('#save').click(function() {
+  $('#td-save').click(function() {
     alert('Saved');
     //TODO: Implement save function
   });
