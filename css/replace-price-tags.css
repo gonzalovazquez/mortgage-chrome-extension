@@ -55,7 +55,11 @@ span.td-amount {
   font-size: 30px;
 }
 
-/* Button 2 */
+#td-previous {
+  display: none;
+}
+
+/* Button */
 .td-btn {
     border: none;
     font-family: inherit;

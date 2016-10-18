@@ -3,7 +3,18 @@ $(document).ready(function() {
   // Global monthly mortgage amount
   var monthlyPayments = 0;
 
-  debugger;
+  // Checking for saved searches
+  (function(){
+    // TODO: Value gets overwritten, need to create new DOM elements based on number of saved searches
+    chrome.storage.sync.get('value', function(res) {
+        console.log(res);
+        if (res) {
+          $('#td-previous').show();
+          $("#td-url").attr("href", res.value.url);
+          $('#td-prev-amount').text('$' + res.value.amount + ' monthly');
+        }
+    });
+  })();
 
   // Create DOM for calculator
   document.body.innerHTML = document.body.innerHTML + (
@@ -36,6 +47,7 @@ $(document).ready(function() {
      '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
      '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
      '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
+     '<div id="td-previous"><p>Previous Searches:</p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
     '</div>'
     );
 
@@ -86,11 +98,6 @@ $(document).ready(function() {
       // Notify that we saved.
       alert('Saved');
       console.log('saved');
-      
-      // Fetching the data
-      chrome.storage.sync.get('value', function(res) {
-        console.log(res);
-      });
     });
   });
 });
