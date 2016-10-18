@@ -1,0 +1,105 @@
+/* Styles for action */
+
+span.td-mortgage::after {
+  content: 'TD';
+  margin-left: 0.25em;
+  color: white;
+  background-color: green;
+}
+
+span.td-mortgage:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Custom style for modal */
+
+h1.td-title {
+  margin-top: 2px;
+  padding-top: 0px;
+  margin-bottom: 15px;
+  color: white;
+}
+
+img.td-logo {
+  width: 50px;
+  top: 15px;
+  position: absolute;
+  right: 35px;
+}
+
+span.td-banner {
+  z-index: -10000;
+  background-color: #54b948;
+  width: 470px;
+  height: 50px;
+  position: absolute;
+  top: 12px;
+  padding-right: 30px;
+  left: 0;
+}
+
+label.td-mortgage-label {
+  width: 150px;
+  display: inline-block;
+}
+
+div#td-results {
+  display: none;
+}
+
+span.td-amount {
+  color: #54b948;
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: 30px;
+}
+
+/* Button 2 */
+.td-btn {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 60px;
+    display: inline-block;
+    margin: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.td-btn-2 {
+	background: #2DB94D;
+	color: #fff;
+	box-shadow: 0 6px #3F6B40;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+/* Button 2a */
+.td-btn-2a {
+	border-radius: 0 0 5px 5px;
+}
+
+.td-btn-fl {
+    padding: 10px 30px 10px 30px;
+}
+
+.td-btn-2a:hover {
+	box-shadow: 0 4px #3F6B40;
+	top: 2px;
+}
+
+.td-btn-2a:active {
+	box-shadow: 0 0 #3F6B40;
+	top: 6px;
+}
