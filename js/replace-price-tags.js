@@ -23,7 +23,7 @@ $(document).ready(function() {
     '<span class="td-banner"></span>' + 
     '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
     '<h4 id="td-balance"></h4>' +
-      '<p><strong>What would you like to calculate?</p>'+
+      '<p class="td-paragraph"><strong>What would you like to calculate?</p>'+
       '<div>'+
       '  <label for="balance" class="td-mortgage-label">Loan balance</label>'+
       '  <input name="balance" id="td-balance" type="text" />'+
@@ -47,7 +47,7 @@ $(document).ready(function() {
      '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
      '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
      '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
-     '<div id="td-previous"><p>Previous Searches:</p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
+     '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
     '</div>'
     );
 

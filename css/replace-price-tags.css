@@ -59,6 +59,10 @@ span.td-amount {
   display: none;
 }
 
+p.td-paragraph {
+  font-size: 18px;
+}
+
 /* Button */
 .td-btn {
     border: none;
