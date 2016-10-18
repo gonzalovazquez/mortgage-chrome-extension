@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+  // Global monthly mortgage amount
+  var monthlyPayments = 0;
+
+  debugger;
+
   // Create DOM for calculator
   document.body.innerHTML = document.body.innerHTML + (
     '<div id="ex1" style="display:none;">' +
@@ -56,16 +61,15 @@ $(document).ready(function() {
         interestRate = ($('#td-rate').val() / 100) / 12,
         period = $('#td-period').val(),
         years = $('#td-term').val(),
-        monthlyPayments = 0,
         numberOfPayments = years * period;
 
     var leftSideofEquation = interestRate * Math.pow((1 + interestRate), numberOfPayments);
     var rightSideofEquation = Math.pow(1 + interestRate, numberOfPayments) - 1;
-    numberOfPayments = parseInt(principalAmount * (leftSideofEquation / rightSideofEquation));
+    monthlyPayments = parseInt(principalAmount * (leftSideofEquation / rightSideofEquation));
 
     // Change value dynamically
     //TODO: Add comma separation
-    $('span.td-amount').text('$' + numberOfPayments);
+    $('span.td-amount').text('$' + monthlyPayments);
 
     // Show monthly payments  
     $('#td-results').show();
@@ -74,7 +78,19 @@ $(document).ready(function() {
 
   // Save Research
   $('#td-save').click(function() {
-    alert('Saved');
+    var locationOfHome = $(location).attr('href'),
+        value = {url: locationOfHome, amount: monthlyPayments};
+
     //TODO: Implement save function
+    chrome.storage.sync.set({'value': value}, function() {
+      // Notify that we saved.
+      alert('Saved');
+      console.log('saved');
+      
+      // Fetching the data
+      chrome.storage.sync.get('value', function(res) {
+        console.log(res);
+      });
+    });
   });
 });
