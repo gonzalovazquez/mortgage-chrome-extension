@@ -12,7 +12,8 @@
         "activeTab",
         "tabs",
         "http://*/*",
-        "https://*/*"
+        "https://*/*",
+        "storage"
     ],
     "background": {
         "scripts": [
