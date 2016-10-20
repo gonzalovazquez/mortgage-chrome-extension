@@ -8,13 +8,12 @@ $(document).ready(function () {
   (function () {
     // TODO: Value gets overwritten, need to create new DOM elements based on number of saved searches
     chrome.storage.sync.get('value', function (res) {
-      console.log(res);
-      prevSavedValueArray = res;
-      if (prevSavedValueArray.length > 0) {
-        var previousSearchTxt;
+      prevSavedValueArray = res.value;
 
+      if (prevSavedValueArray.length > 0) {
+        var previousSearchTxt = '\n';
         prevSavedValueArray.forEach(function (elem, i) {
-          previousSearchTxt = 'Search History ' + (i + 1) + ': ' + '$' + elem.amount + ' monthly'
+          previousSearchTxt += 'Search History ' + (i + 1) + ': ' + '$' + elem.amount + ' monthly' + '\n';
         });
 
         $('#td-previous').show();
@@ -23,7 +22,6 @@ $(document).ready(function () {
       }
       else {
         chrome.storage.sync.set({'value': []}, function () {
-          // Notify that we saved.
           console.log('prevSSavedValueArray is reset to empty array');
         });
       }
@@ -92,7 +90,7 @@ $(document).ready(function () {
       period = $('#td-period').val(),
       years = $('#td-term').val(),
       numberOfPayments = years * period;
-
+    
     var leftSideofEquation = interestRate * Math.pow((1 + interestRate), numberOfPayments);
     var rightSideofEquation = Math.pow(1 + interestRate, numberOfPayments) - 1;
     monthlyPayments = parseInt(principalAmount * (leftSideofEquation / rightSideofEquation));
@@ -116,8 +114,6 @@ $(document).ready(function () {
       amount: monthlyPayments
     };
 
-    console.log(prevSavedValueArray.length );
-
     if (prevSavedValueArray.length < numberOfSavedAmounts) {
       prevSavedValueArray.push(valueObjToSave);
     }
@@ -130,6 +126,18 @@ $(document).ready(function () {
     chrome.storage.sync.set({'value': prevSavedValueArray}, function () {
       // Notify that we saved.
       alert('Saved');
+      if (prevSavedValueArray.length > 0) {
+        var previousSearchTxt = '\n';
+        prevSavedValueArray.forEach(function (elem, i) {
+          previousSearchTxt = previousSearchTxt + 'Search History ' + (i + 1) + ': ' + '$' + elem.amount + ' monthly' + '\n';
+        });
+        $('#td-prev-amount').text(previousSearchTxt);
+      }
+      else {
+        chrome.storage.sync.set({'value': []}, function () {
+          console.log('prevSSavedValueArray is reset to empty array');
+        });
+      }
       console.log('saved');
     });
   });
