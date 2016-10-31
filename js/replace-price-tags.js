@@ -40,11 +40,13 @@ $(document).ready(function() {
                   .filter(function(w) { return w[0] === '$'; })
                   .filter(function(e, i, array) { return array.includes(e); });
   document.body.innerHTML = priceTags.reduce(function(innerHtml, priceTag) {
-    return innerHtml.replace(new RegExp('\\' + priceTag, 'g'), "<a href='#ex1' rel='modal:open'><span class='td-mortgage'>" + priceTag + "</span></a>");
+    return innerHtml.replace(new RegExp('\\' + priceTag, 'g'), "<span class='td-mortgage'>" + priceTag + "</span>");
   }, document.body.innerHTML);
 
   // Grab price and mouse event and insert into DOM modal
   $('span.td-mortgage').click(function() {
+    console.log('Clicked on span');
+    $('div#ex1').css("display", "block");
     $('input#td-balance').val($(event.target).text());
   });
 

@@ -1,3 +1,11 @@
+/* General Design */
+
+#ex1 {
+  position: absolute;
+  top: 60px;
+  background-color: rgba(151, 151, 151, 0.71);
+}
+
 /* Styles for action */
 
 span.td-mortgage::after {
@@ -30,7 +38,6 @@ img.td-logo {
 
 span.td-banner {
   z-index: -10000;
-  background-color: #54b948;
   width: 470px;
   height: 50px;
   position: absolute;
