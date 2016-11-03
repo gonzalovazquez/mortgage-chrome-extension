@@ -62,7 +62,15 @@ span.td-amount {
   font-size: 30px;
 }
 
-/* Button 2 */
+#td-previous {
+  display: none;
+}
+
+p.td-paragraph {
+  font-size: 18px;
+}
+
+/* Button */
 .td-btn {
     border: none;
     font-family: inherit;

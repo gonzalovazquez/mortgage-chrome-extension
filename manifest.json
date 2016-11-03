@@ -12,7 +12,8 @@
         "activeTab",
         "tabs",
         "http://*/*",
-        "https://*/*"
+        "https://*/*",
+        "storage"
     ],
     "background": {
         "scripts": [
@@ -36,12 +37,10 @@
                 "<all_urls>"
             ],
             "css": [
-                "bower_components/jquery-modal/jquery.modal.min.css",
                 "css/replace-price-tags.css"
                 ],
             "js": [
                 "bower_components/jquery/dist/jquery.min.js",
-                "bower_components/jquery-modal/jquery.modal.min.js",
                 "js/replace-price-tags.js"
                 ]
         }
