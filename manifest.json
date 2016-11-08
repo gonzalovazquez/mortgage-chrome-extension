@@ -30,7 +30,7 @@
             "matches": [
                 "<all_urls>"
             ],
-            "js": ["bower_components/jquery/dist/jquery.min.js","js/content.js"]
+            "js": ["bower_components/jquery/dist/jquery.js","js/content.js"]
         },
         {
             "matches": [
@@ -40,7 +40,7 @@
                 "css/replace-price-tags.css"
                 ],
             "js": [
-                "bower_components/jquery/dist/jquery.min.js",
+                "bower_components/jquery/dist/jquery.js",
                 "js/replace-price-tags.js"
                 ]
         }

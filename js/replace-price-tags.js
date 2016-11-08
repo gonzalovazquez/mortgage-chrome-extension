@@ -30,10 +30,11 @@ $(document).ready(function () {
 
   // Create DOM for calculator
   document.body.innerHTML = document.body.innerHTML + (
-      '<div id="ex1" style="display:none;">' +
+      '<div id="td-widget-pane">' +
       '<h1 class="td-title">Mortgage Calculator</h1>' +
       '<span class="td-banner"></span>' +
       '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
+      '<div class="inner-container">' +
       '<h4 id="td-balance"></h4>' +
       '<p class="td-paragraph"><strong>What would you like to calculate?</p>' +
       '<div>' +
@@ -56,10 +57,14 @@ $(document).ready(function () {
       '     <option value="6">Bimonthly</option>' +
       '   </select>' +
       ' </div>' +
+      '</div>' +
       '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
       '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
       '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
+      '<div class="inner-container">' + 
       '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
+      '<div class="widget-pane-toggle-button-container"><button class="widget-pane-toggle-button"></button></div>' + 
+      '</div>' +
       '</div>'
     );
 
@@ -78,10 +83,16 @@ $(document).ready(function () {
 
   // Grab price and mouse event and insert into DOM modal
   $('span.td-mortgage').click(function () {
-    $('div#ex1').css("display", "block");
+    $('div#td-widget-pane').css("display", "block");
     $('input#td-balance').val($(event.target).text());
+    $('div#td-widget-pane').addClass('slide');
   });
   
+  // Expand and collapse modal
+  $('.widget-pane-toggle-button').click(function() {
+    console.log('Toggle pane');
+    $('div#td-widget-pane').toggleClass('slide');
+  });
 
   // Calculate Mortgage
   $('#td-calculate').click(function () {
