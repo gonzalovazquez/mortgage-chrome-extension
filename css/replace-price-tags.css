@@ -1,3 +1,64 @@
+/* General Design */
+
+body {
+  font-family: ProximaNovaRgRegular,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Verdana,sans-serif;
+  line-height: 1.4;
+}
+strong {
+  font-size: 1.2em;
+}
+
+#td-widget-pane {
+    background-color: #fff;
+    opacity: 0.8;
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    width: 408px;
+    position: absolute;
+    top: 60px;
+    left: -410px;
+    z-index: 100;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    transition-property: -webkit-transform,transform,opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+}
+
+div.inner-container {
+  padding-left: 20px;
+}
+
+.widget-pane-toggle-button-container {
+    position: absolute;
+    z-index: 0;
+    top: 12px;
+    left: 100%;
+}
+
+.widget-pane-toggle-button {
+    width: 23px;
+    height: 48px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.9);
+}
+
+.widget-pane-toggle-button::after {
+  content: ">";
+}
+
+.widget-pane-visible .widget-pane-toggle-button-container {
+    display: block;
+}
+
+.slide {
+    -webkit-animation: slide 0.5s;
+    -webkit-animation-delay: 1s;
+    animation: slide 0.5s;
+    animation-delay: 1s;
+    left: 0 !important;
+}
+
 /* Styles for action */
 
 span.td-mortgage::after {
@@ -15,10 +76,10 @@ span.td-mortgage:hover {
 /* Custom style for modal */
 
 h1.td-title {
-  margin-top: 2px;
+  margin-top: 18px;
   padding-top: 0px;
   margin-bottom: 15px;
-  color: white;
+  color: black;
 }
 
 img.td-logo {
@@ -30,8 +91,8 @@ img.td-logo {
 
 span.td-banner {
   z-index: -10000;
-  background-color: #54b948;
-  width: 470px;
+  background-color: #76c76d;
+  width: 378px;
   height: 50px;
   position: absolute;
   top: 12px;
@@ -64,14 +125,19 @@ p.td-paragraph {
 }
 
 /* Button */
+#button-container {
+  text-align: center;
+}
+
 .td-btn {
+    width: 150px;
     border: none;
     font-family: inherit;
     font-size: inherit;
     color: inherit;
     background: none;
     cursor: pointer;
-    padding: 10px 60px;
+    padding: 10px 15px 10px 15px;
     display: inline-block;
     margin: 10px 20px;
     text-transform: uppercase;
@@ -96,10 +162,6 @@ p.td-paragraph {
 /* Button 2a */
 .td-btn-2a {
 	border-radius: 0 0 5px 5px;
-}
-
-.td-btn-fl {
-    padding: 10px 30px 10px 30px;
 }
 
 .td-btn-2a:hover {
