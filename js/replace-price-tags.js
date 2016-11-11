@@ -58,8 +58,10 @@ $(document).ready(function () {
       '   </select>' +
       ' </div>' +
       '</div>' +
+      '<div id="button-container">' +
       '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
       '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
+      '</div>' + 
       '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
       '<div class="inner-container">' + 
       '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
@@ -148,7 +150,7 @@ $(document).ready(function () {
       }
       else {
         chrome.storage.sync.set({'value': []}, function () {
-          console.log('prevSSavedValueArray is reset to empty array');
+          console.log('prevSavedValueArray is reset to empty array');
         });
       }
       console.log('saved');
