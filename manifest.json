@@ -4,11 +4,10 @@
     "description": "This extensions enables TD features on any website",
     "version": "1.0",
     "browser_action": {
-        "default_icon": "td-icon.png",
-        //"default_popup": "td.html",
-        "default_title": "Click here!"
+        "default_icon": "td-icon.png"
     },
     "permissions": [
+        "contextMenus",
         "activeTab",
         "tabs",
         "http://*/*",
@@ -30,19 +29,13 @@
             "matches": [
                 "<all_urls>"
             ],
-            "js": ["bower_components/jquery/dist/jquery.js","js/content.js"]
-        },
-        {
-            "matches": [
-                "<all_urls>"
-            ],
             "css": [
                 "css/replace-price-tags.css"
-                ],
+            ],
             "js": [
                 "bower_components/jquery/dist/jquery.js",
-                "js/replace-price-tags.js"
-                ]
+                "js/content.js"
+            ]
         }
     ],
     "web_accessible_resources": [
