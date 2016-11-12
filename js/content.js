@@ -2,8 +2,6 @@ $(document).ready(function () {
 
 console.log('Content.js loaded - access to page');
 
-var _$ = document.querySelector;
-
 // Global monthly mortgage amount
 var monthlyPayments = 0;
 var prevSavedValueArray = [];
@@ -19,8 +17,8 @@ chrome.runtime.onMessage.addListener(
 
 
 // Checking for saved searches
-  (function () {
-    // TODO: Value gets overwritten, need to create new DOM elements based on number of saved searches
+(function () {
+  // TODO: Value gets overwritten, need to create new DOM elements based on number of saved searches
     chrome.storage.sync.get('value', function (res) {
       prevSavedValueArray = res.value;
 
@@ -43,50 +41,50 @@ chrome.runtime.onMessage.addListener(
         });
       }
     });
-  })();
+})();
 
 
   // Create DOM for calculator
-  document.body.innerHTML = document.body.innerHTML + (
-      '<div id="td-widget-pane">' +
-      '<h1 class="td-title">Mortgage Calculator</h1>' +
-      '<span class="td-banner"></span>' +
-      '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
-      '<div class="td-inner-container">' +
-      '<h4 id="td-balance"></h4>' +
-      '<p class="td-paragraph"><strong>What would you like to calculate?</p>' +
-      '<div>' +
-      '  <label for="balance" class="td-mortgage-label">Loan balance</label>' +
-      '  <input name="balance" id="td-balance" type="text" />' +
-      ' </div>' +
-      '<div>' +
-      '   <label for="rate" class="td-mortgage-label">Interest rate (%)</label>' +
-      '   <input name="rate" id="td-rate" type="text" />' +
-      ' </div>' +
-      ' <div>' +
-      '   <label for="term" class="td-mortgage-label">Loan term (years)</label>' +
-      '   <input name="term" id="td-term" type="text" />' +
-      ' </div>' +
-      ' <div>' +
-      '   <label for="period" class="td-mortgage-label">Period</label>' +
-      '   <select name="period" id="td-period">' +
-      '     <option>Select</option>' +
-      '     <option value="12">Monthly</option>' +
-      '     <option value="6">Bimonthly</option>' +
-      '   </select>' +
-      ' </div>' +
-      '</div>' +
-      '<div id="td-button-container">' +
-      '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
-      '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
-      '</div>' + 
-      '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
-      '<div class="td-inner-container">' + 
-      '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
-      '<div class="td-widget-pane-toggle-button-container"><button class="td-widget-pane-toggle-button"></button></div>' + 
-      '</div>' +
-      '</div>'
-    );
+document.body.innerHTML = document.body.innerHTML + (
+  '<div id="td-widget-pane">' +
+  '<h1 class="td-title">Mortgage Calculator</h1>' +
+  '<span class="td-banner"></span>' +
+  '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
+  '<div class="td-inner-container">' +
+  '<h4 id="td-balance"></h4>' +
+  '<p class="td-paragraph"><strong>What would you like to calculate?</p>' +
+  '<div>' +
+  '  <label for="balance" class="td-mortgage-label">Loan balance</label>' +
+  '  <input name="balance" id="td-balance" type="text" />' +
+  ' </div>' +
+  '<div>' +
+  '   <label for="rate" class="td-mortgage-label">Interest rate (%)</label>' +
+  '   <input name="rate" id="td-rate" type="text" />' +
+  ' </div>' +
+  ' <div>' +
+  '   <label for="term" class="td-mortgage-label">Loan term (years)</label>' +
+  '   <input name="term" id="td-term" type="text" />' +
+  ' </div>' +
+  ' <div>' +
+  '   <label for="period" class="td-mortgage-label">Period</label>' +
+  '   <select name="period" id="td-period">' +
+  '     <option>Select</option>' +
+  '     <option value="12">Monthly</option>' +
+  '     <option value="6">Bimonthly</option>' +
+  '   </select>' +
+  ' </div>' +
+  '</div>' +
+  '<div id="td-button-container">' +
+  '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
+  '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
+  '</div>' + 
+  '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
+  '<div class="td-inner-container">' + 
+  '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
+  '<div class="td-widget-pane-toggle-button-container"><button class="td-widget-pane-toggle-button"></button></div>' + 
+  '</div>' +
+  '</div>'
+);
 
 
 // Grab price and mouse event and insert into DOM modal
