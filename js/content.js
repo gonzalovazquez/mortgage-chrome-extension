@@ -101,13 +101,22 @@ openModal = function(amount){
   document.querySelector('#td-widget-pane').classList.add('td-slide');
 
 };
-
   
 // Expand and collapse modal
-$('.td-widget-pane-toggle-button').click(function() {
-  $('div#td-widget-pane').toggleClass('td-slide');
 
-});
+var toggleButton = document.querySelector('.td-widget-pane-toggle-button');
+document.addEventListener('click', toggleModal, false);
+
+function toggleModal() {
+  console.log('Toggle modal');
+  var leftpane = document.querySelector('#td-widget-pane');
+  
+  if (leftpane.classList[0] === 'td-slide') {
+    leftpane.classList.remove('td-slide');
+  } else {
+    leftpane.classList.add('td-slide');
+  }
+}
 
 // Calculate Mortgage
 $('#td-calculate').click(function () {
