@@ -2,6 +2,8 @@ $(document).ready(function () {
 
 console.log('Content.js loaded - access to page');
 
+var _$ = document.querySelector;
+
 // Global monthly mortgage amount
 var monthlyPayments = 0;
 var prevSavedValueArray = [];
@@ -28,9 +30,12 @@ chrome.runtime.onMessage.addListener(
           previousSearchTxt += 'Search History ' + (i + 1) + ': ' + '$' + elem.amount + ' monthly' + '\n';
         });
 
-        $('#td-previous').show();
-        $("#td-url").attr("href", res.value.url);
-        $('#td-prev-amount').text(previousSearchTxt);
+        document.querySelector('#td-previous').style.display = 'block';
+        //$('#td-previous').show();
+        document.querySelector('#td-url').setAttribute('href', res.value.url);
+        //$("#td-url").attr("href", res.value.url);
+        document.querySelector('#td-prev-amount').textContent = previousSearchTxt;
+        //$('#td-prev-amount').text(previousSearchTxt);
       }
       else {
         chrome.storage.sync.set({'value': []}, function () {
@@ -47,7 +52,7 @@ chrome.runtime.onMessage.addListener(
       '<h1 class="td-title">Mortgage Calculator</h1>' +
       '<span class="td-banner"></span>' +
       '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
-      '<div class="inner-container">' +
+      '<div class="td-inner-container">' +
       '<h4 id="td-balance"></h4>' +
       '<p class="td-paragraph"><strong>What would you like to calculate?</p>' +
       '<div>' +
@@ -71,14 +76,14 @@ chrome.runtime.onMessage.addListener(
       '   </select>' +
       ' </div>' +
       '</div>' +
-      '<div id="button-container">' +
+      '<div id="td-button-container">' +
       '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
       '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
       '</div>' + 
       '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
-      '<div class="inner-container">' + 
+      '<div class="td-inner-container">' + 
       '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
-      '<div class="widget-pane-toggle-button-container"><button class="widget-pane-toggle-button"></button></div>' + 
+      '<div class="td-widget-pane-toggle-button-container"><button class="td-widget-pane-toggle-button"></button></div>' + 
       '</div>' +
       '</div>'
     );
@@ -86,15 +91,22 @@ chrome.runtime.onMessage.addListener(
 
 // Grab price and mouse event and insert into DOM modal
 openModal = function(amount){
-  $('div#td-widget-pane').css("display", "block");
+  console.log('Open!', amount);
+  //$('div#td-widget-pane').css("display", "block");
   $('input#td-balance').val('$'+ amount);
-  $('div#td-widget-pane').addClass('slide');
+  //$('div#td-widget-pane').addClass('td-slide');
+
+  //
+  document.querySelector('#td-widget-pane').style.display = 'block';
+  document.querySelector('#td-widget-pane').classList.add('td-slide');
+
 };
 
   
 // Expand and collapse modal
-$('.widget-pane-toggle-button').click(function() {
-  $('div#td-widget-pane').toggleClass('slide');
+$('.td-widget-pane-toggle-button').click(function() {
+  $('div#td-widget-pane').toggleClass('td-slide');
+
 });
 
 // Calculate Mortgage

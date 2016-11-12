@@ -1,10 +1,10 @@
 /* General Design */
 
-body {
+div#td-widget-pane > p, strong, h1, h2, h3, h4 {
   font-family: ProximaNovaRgRegular,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Verdana,sans-serif;
   line-height: 1.4;
 }
-strong {
+div#td-widget-pane > strong {
   font-size: 1.2em;
 }
 
@@ -25,33 +25,33 @@ strong {
     transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
 }
 
-div.inner-container {
+div.td-inner-container {
   padding-left: 20px;
 }
 
-.widget-pane-toggle-button-container {
+.td-widget-pane-toggle-button-container {
     position: absolute;
     z-index: 0;
     top: 12px;
     left: 100%;
 }
 
-.widget-pane-toggle-button {
+.td-widget-pane-toggle-button {
     width: 23px;
     height: 48px;
     cursor: pointer;
     background: rgba(255,255,255,0.9);
 }
 
-.widget-pane-toggle-button::after {
+.td-widget-pane-toggle-button::after {
   content: ">";
 }
 
-.widget-pane-visible .widget-pane-toggle-button-container {
+.td-widget-pane-visible .td-widget-pane-toggle-button-container {
     display: block;
 }
 
-.slide {
+.td-slide {
     -webkit-animation: slide 0.5s;
     -webkit-animation-delay: 1s;
     animation: slide 0.5s;
@@ -125,7 +125,7 @@ p.td-paragraph {
 }
 
 /* Button */
-#button-container {
+#td-button-container {
   text-align: center;
 }
 

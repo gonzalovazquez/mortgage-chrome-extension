@@ -37,8 +37,5 @@
                 "js/content.js"
             ]
         }
-    ],
-    "web_accessible_resources": [
-        "td.html"
     ]
 }
