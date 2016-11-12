@@ -103,9 +103,8 @@ openModal = function(amount){
 };
   
 // Expand and collapse modal
-
 var toggleButton = document.querySelector('.td-widget-pane-toggle-button');
-document.addEventListener('click', toggleModal, false);
+toggleButton.addEventListener('click', toggleModal, false);
 
 function toggleModal() {
   console.log('Toggle modal');
