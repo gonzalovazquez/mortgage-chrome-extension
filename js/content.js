@@ -90,13 +90,9 @@ document.body.innerHTML = document.body.innerHTML + (
 // Grab price and mouse event and insert into DOM modal
 openModal = function(amount){
   console.log('Open!', amount);
-  //$('div#td-widget-pane').css("display", "block");
-  $('input#td-balance').val('$'+ amount);
-  //$('div#td-widget-pane').addClass('td-slide');
-
-  //
-  document.querySelector('#td-widget-pane').style.display = 'block';
-  document.querySelector('#td-widget-pane').classList.add('td-slide');
+  document.querySelector('input#td-balance').value = '$' + amount;
+  document.querySelector('div#td-widget-pane').style.display = 'block';
+  document.querySelector('div#td-widget-pane').classList.add('td-slide');
 
 };
   
@@ -116,7 +112,11 @@ function toggleModal() {
 }
 
 // Calculate Mortgage
-$('#td-calculate').click(function () {
+
+var calculate = document.querySelector('#td-calculate');
+calculate.addEventListener('click', calculateMortgage, false);
+
+function calculateMortgage() {
   //TODO: Improve mortgage calculation
   var principalAmount = parseInt($('input#td-balance').val().replace(/,/g, "").substring(1)),
       interestRate = ($('#td-rate').val() / 100) / 12,
@@ -134,7 +134,7 @@ $('#td-calculate').click(function () {
 
   // Show monthly payments
   $('#td-results').show();
-});
+}
 
   // Save Research
 $('#td-save').click(function () {
