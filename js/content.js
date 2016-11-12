@@ -1,5 +1,3 @@
-$(document).ready(function () {
-
 console.log('Content.js loaded - access to page');
 
 // Global monthly mortgage amount
@@ -29,11 +27,8 @@ chrome.runtime.onMessage.addListener(
         });
 
         document.querySelector('#td-previous').style.display = 'block';
-        //$('#td-previous').show();
         document.querySelector('#td-url').setAttribute('href', res.value.url);
-        //$("#td-url").attr("href", res.value.url);
         document.querySelector('#td-prev-amount').textContent = previousSearchTxt;
-        //$('#td-prev-amount').text(previousSearchTxt);
       }
       else {
         chrome.storage.sync.set({'value': []}, function () {
@@ -112,16 +107,15 @@ function toggleModal() {
 }
 
 // Calculate Mortgage
-
 var calculate = document.querySelector('#td-calculate');
 calculate.addEventListener('click', calculateMortgage, false);
 
 function calculateMortgage() {
   //TODO: Improve mortgage calculation
-  var principalAmount = parseInt($('input#td-balance').val().replace(/,/g, "").substring(1)),
-      interestRate = ($('#td-rate').val() / 100) / 12,
-      period = $('#td-period').val(),
-      years = $('#td-term').val(),
+  var principalAmount = document.querySelector('input#td-balance').value.replace(/[,$]/g,""),
+      interestRate = document.querySelector('#td-rate').value / 100 / 12,
+      period = document.querySelector('#td-period').value,
+      years = document.querySelector('#td-term').value,
       numberOfPayments = years * period;
     
   var leftSideofEquation = interestRate * Math.pow((1 + interestRate), numberOfPayments);
@@ -130,17 +124,21 @@ function calculateMortgage() {
 
   // Change value dynamically
   //TODO: Add comma separation
-  $('span.td-amount').text('$' + monthlyPayments);
+  document.querySelector('span.td-amount').innerHTML = '$' + monthlyPayments;
 
   // Show monthly payments
-  $('#td-results').show();
+  document.querySelector('#td-results').style.display = 'block';
 }
 
-  // Save Research
-$('#td-save').click(function () {
+// Save Research
+
+var saveButton = document.querySelector('#td-save');
+saveButton.addEventListener('click', saveResults, false);
+
+function saveResults() {
   //TODO: Create a options page to set number of previous saved amounts required. Till then numberOfSavedAmounts is set to 3
   var numberOfSavedAmounts = 3;
-  var locationOfHome = $(location).attr('href');
+  var locationOfHome = window.location.href;
   var valueObjToSave = {
       url: locationOfHome,
       amount: monthlyPayments
@@ -162,7 +160,8 @@ $('#td-save').click(function () {
           prevSavedValueArray.forEach(function (elem, i) {
               previousSearchTxt = previousSearchTxt + 'Search History ' + (i + 1) + ': ' + '$' + elem.amount + ' monthly' + '\n';
           });
-          $('#td-prev-amount').text(previousSearchTxt);
+          document.querySelector('#td-prev-amount').innerHTML = previousSearchTxt;
+          //TODO: Call API with saved parameters
       } else {
           chrome.storage.sync.set({'value': []}, function () {
             console.log('prevSavedValueArray is reset to empty array');
@@ -170,5 +169,4 @@ $('#td-save').click(function () {
       }
       console.log('Saved');
     });
-  });
-}, true);
+}
