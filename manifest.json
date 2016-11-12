@@ -33,7 +33,6 @@
                 "css/replace-price-tags.css"
             ],
             "js": [
-                "bower_components/jquery/dist/jquery.js",
                 "js/content.js"
             ]
         }
