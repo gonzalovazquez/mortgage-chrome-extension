@@ -2,13 +2,12 @@
     "manifest_version": 2,
     "name": "TD Extension",
     "description": "This extensions enables TD features on any website",
-    "version": "1.0",
+    "version": "1.2",
     "browser_action": {
-        "default_icon": "td-icon.png",
-        //"default_popup": "td.html",
-        "default_title": "Click here!"
+        "default_icon": "td-icon.png"
     },
     "permissions": [
+        "contextMenus",
         "activeTab",
         "tabs",
         "http://*/*",
@@ -18,7 +17,7 @@
     "background": {
         "scripts": [
             "js/background.js"
-            ]
+        ]
     },
     "icons": {
         "16": "td-icon.png",
@@ -30,22 +29,12 @@
             "matches": [
                 "<all_urls>"
             ],
-            "js": ["bower_components/jquery/dist/jquery.js","js/content.js"]
-        },
-        {
-            "matches": [
-                "<all_urls>"
-            ],
             "css": [
                 "css/replace-price-tags.css"
-                ],
+            ],
             "js": [
-                "bower_components/jquery/dist/jquery.js",
-                "js/replace-price-tags.js"
-                ]
+                "js/create-dom.js","js/content.js"
+            ]
         }
-    ],
-    "web_accessible_resources": [
-        "td.html"
     ]
 }
