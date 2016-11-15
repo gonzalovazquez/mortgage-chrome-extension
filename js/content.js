@@ -39,48 +39,108 @@
       });
   })();
 
-
   // Create DOM for calculator
-  document.body.innerHTML = document.body.innerHTML + (
-    '<div id="td-widget-pane">' +
-    '<h1 class="td-title">Mortgage Calculator</h1>' +
-    '<span class="td-banner"></span>' +
-    '<img class="td-logo" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg"/>' +
-    '<div class="td-inner-container">' +
-    '<h4 id="td-balance"></h4>' +
-    '<p class="td-paragraph"><strong>What would you like to calculate?</p>' +
-    '<div>' +
-    '  <label for="balance" class="td-mortgage-label">Loan balance</label>' +
-    '  <input name="balance" id="td-balance" type="text" />' +
-    ' </div>' +
-    '<div>' +
-    '   <label for="rate" class="td-mortgage-label">Interest rate (%)</label>' +
-    '   <input name="rate" id="td-rate" type="text" />' +
-    ' </div>' +
-    ' <div>' +
-    '   <label for="term" class="td-mortgage-label">Loan term (years)</label>' +
-    '   <input name="term" id="td-term" type="text" />' +
-    ' </div>' +
-    ' <div>' +
-    '   <label for="period" class="td-mortgage-label">Period</label>' +
-    '   <select name="period" id="td-period">' +
-    '     <option>Select</option>' +
-    '     <option value="12">Monthly</option>' +
-    '     <option value="6">Bimonthly</option>' +
-    '   </select>' +
-    ' </div>' +
-    '</div>' +
-    '<div id="td-button-container">' +
-    '<button class="td-btn td-btn-2 td-btn-2a td-btn-fl" id="td-calculate">Calculate</button>' +
-    '<button class="td-btn td-btn-2 td-btn-2a" id="td-save">Save</button>' +
-    '</div>' + 
-    '<div id="td-results"><h3>Your monthly payments are:<span class="td-amount"></span></h3></div>' +
-    '<div class="td-inner-container">' + 
-    '<div id="td-previous"><p class="td-paragraph"><strong>Previous Searches:</strong></p><a id="td-url" href="#">Link: </a><span id="td-prev-amount"></span></div>' +
-    '<div class="td-widget-pane-toggle-button-container"><button class="td-widget-pane-toggle-button"></button></div>' + 
-    '</div>' +
-    '</div>'
-  );
+  var mainContainer = document.createElement('div');
+  mainContainer.setAttribute('id', 'td-widget-pane');
+  mainContainer.setAttribute('class', 'td-slide');
+  var mainTitle = document.createElement('h1');
+  mainTitle.setAttribute('id', 'td-title');
+  mainTitle.innerHTML = 'Mortgage Calculator';
+  var banner = document.createElement('span');
+  banner.setAttribute('class', 'td-banner');
+  var image = document.createElement('img');
+  image.setAttribute('class', 'td-logo');
+  image.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg');
+  var innerContainer = document.createElement('div');
+  innerContainer.setAttribute('class', 'td-inner-container');
+  var balance = document.createElement('h4');
+  balance.setAttribute('id', 'td-balance');
+  var calculateText = document.createElement('p');
+  calculateText.setAttribute('class', 'td-paragraph');
+  var strongText = document.createElement('strong');
+  strongText.innerHTML = 'What would you like to calculate?';
+  calculateText.appendChild(strongText);
+  var anotherContainer = document.createElement('div');
+  var loanBalance = document.createElement('label');
+  loanBalance.setAttribute('class', 'td-mortgage-label');
+  loanBalance.innerHTML = 'Loan Balance';
+  var inputBalance = document.createElement('input');
+  inputBalance.setAttribute('id', 'td-balance');
+  inputBalance.type = 'text';
+  anotherContainer.appendChild(loanBalance);
+  anotherContainer.appendChild(inputBalance);
+  var interestRateContainer = document.createElement('div');
+  var rateLabel = document.createElement('label');
+  rateLabel.setAttribute('class', 'td-mortgage-label');
+  rateLabel.innerHTML = 'Interest rate (%)';
+  var rateInput = document.createElement('input');
+  rateInput.setAttribute('id', 'td-rate');
+  rateInput.type = 'text';
+  interestRateContainer.appendChild(rateLabel);
+  interestRateContainer.appendChild(rateInput);
+  var loanContainer = document.createElement('div');
+  var loanLabel = document.createElement('label');
+  loanLabel.setAttribute('class', 'td-mortgage-label');
+  loanLabel.innerHTML = 'Loan term (years)';
+  var loanInput = document.createElement('input');
+  loanInput.setAttribute('id', 'td-term');
+  loanInput.type = 'text';
+  loanContainer.appendChild(loanLabel);
+  loanContainer.appendChild(loanInput);
+  var periodContainer = document.createElement('div');
+  var periodLabel = document.createElement('label');
+  periodLabel.setAttribute('class', 'td-mortgage-label');
+  periodLabel.innerHTML = 'Period';
+  var selectList = document.createElement("select");
+  selectList.setAttribute('id', 'td-period');
+  var opt = [{title: 'Monthly', value: '12'}, {title: 'Bimonthly', value: '6'}];
+  for (var i = 0; i < opt.length; i++) {
+    var option = document.createElement("option");
+    option.value = opt[i].value;
+    option.text = opt[i].title;
+    selectList.appendChild(option);
+}
+  periodContainer.appendChild(periodLabel);
+  periodContainer.appendChild(selectList);
+
+  innerContainer.appendChild(calculateText);
+  innerContainer.appendChild(balance);
+  innerContainer.appendChild(anotherContainer);
+  innerContainer.appendChild(interestRateContainer);
+  innerContainer.appendChild(loanContainer);
+  innerContainer.appendChild(periodContainer);
+
+  var buttonContainer = document.createElement('div');
+  buttonContainer.setAttribute('id', 'td-button-container');
+  var calculateButton = document.createElement('button');
+  calculateButton.setAttribute('class', 'td-btn td-btn-2 td-btn-2a td-btn-fl');
+  calculateButton.setAttribute('id', 'td-calculate');
+  calculateButton.innerHTML = 'Calculate';
+  var saveButton = document.createElement('button');
+  saveButton.setAttribute('class', 'td-btn td-btn-2 td-btn-2a');
+  saveButton.setAttribute('id', 'td-save');
+  saveButton.innerHTML = 'Save';
+  buttonContainer.appendChild(calculateButton);
+  buttonContainer.appendChild(saveButton);
+
+  var resultContainer = document.createElement('div');
+  resultContainer.setAttribute('id', 'td-results');
+  var monthlyHeadline = document.createElement('h3');
+  var spanAmount = document.createElement('span');
+  spanAmount.setAttribute('class', 'td-amount');
+  monthlyHeadline.appendChild(spanAmount);
+  resultContainer.appendChild(monthlyHeadline);
+
+
+  // Append childs to main container
+  mainContainer.appendChild(mainTitle);
+  mainContainer.appendChild(innerContainer);
+  mainContainer.appendChild(banner);
+  mainContainer.appendChild(image);
+  mainContainer.appendChild(buttonContainer);
+  mainContainer.appendChild(resultContainer);
+  // Last step: append calculator
+  document.body.appendChild(mainContainer);
 
 
   // Grab price and mouse event and insert into DOM modal
