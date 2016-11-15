@@ -33,7 +33,7 @@
                 "css/replace-price-tags.css"
             ],
             "js": [
-                "js/content.js"
+                "js/create-dom.js","js/content.js"
             ]
         }
     ]
