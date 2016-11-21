@@ -14,7 +14,7 @@ div#td-widget-pane > strong {
     height: 100%;
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
     width: 408px;
-    position: absolute;
+    position: fixed;
     top: 60px;
     right: -408px;
     z-index: 100;
