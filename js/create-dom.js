@@ -114,6 +114,8 @@
   collapseBtn.setAttribute('class', 'td-widget-pane-toggle-button');
   collapseContainer.appendChild(collapseBtn);
 
+  var chartContainer = document.createElement('div');
+  chartContainer.setAttribute('id', 'chart-container');
 
   // Append childs to main container
   mainContainer.appendChild(mainTitle);
@@ -127,4 +129,12 @@
   mainContainer.appendChild(collapseContainer);
   // Last step: append calculator
   document.body.appendChild(mainContainer);
+
+  // Chart
+  chartContainer.innerHTML = '<h1>Gonzalo</h1>';
+  innerContainer2.appendChild(chartContainer);
+
+
+
+
 })();
