@@ -33,6 +33,7 @@
                 "css/replace-price-tags.css"
             ],
             "js": [
+                "js/Chart.bundle.min.js",
                 "js/create-dom.js",
                 "js/content.js"
             ]
