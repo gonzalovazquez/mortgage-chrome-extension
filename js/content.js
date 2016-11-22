@@ -86,6 +86,8 @@
     // Show monthly payments
     document.querySelector('#td-results').style.display = 'block';
 
+    var costOfBorrowing = (monthlyPayments * numberOfPayments) - principalAmount;
+
     // Chart
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
@@ -94,7 +96,7 @@
                 labels: ["Loan", "Cost of Borrowing"],
                 datasets: [{
                     label: '$',
-                    data: [principalAmount, monthlyPayments * numberOfPayments],
+                    data: [principalAmount, costOfBorrowing],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)'
