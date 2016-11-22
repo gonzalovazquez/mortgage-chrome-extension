@@ -152,6 +152,13 @@
             });
             document.querySelector('#td-prev-amount').innerHTML = previousSearchTxt;
             //TODO: Call API with saved parameters
+
+            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+            xmlhttp.open("POST", "http://104.196.221.188:8080/api/v1/research/");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.send(JSON.stringify({name:"John Rambo", time:"2pm"}));
+
+
         } else {
             chrome.storage.sync.set({'value': []}, function () {
               console.log('prevSavedValueArray is reset to empty array');
