@@ -6,6 +6,7 @@
   var prevSavedValueArray = [];
   var selectedAmount = 0;
   var openModal;
+  var objectToApi = {};
 
   // Listening to message from context menu
   chrome.runtime.onMessage.addListener(
@@ -14,6 +15,17 @@
       }
   );
 
+
+  // UUID Generator
+  function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+ }
 
   // Checking for saved searches
   (function () {
@@ -118,6 +130,24 @@
                 }
             }
       });
+
+      // Set object
+    objectToApi = {
+            "entry": {
+                "quote": {
+                "amount": principalAmount,
+                "interestRate": document.querySelector('#td-rate').value,
+                "termInMonths": numberOfPayments
+                },
+                    "context": {
+                        "itemLocation": window.location.href,
+                        "site": window.location.hostname
+                    }
+            },
+            "header": {
+                "requestId": guid()
+            }
+        }
   }
 
   // Save Research
@@ -152,13 +182,10 @@
             });
             document.querySelector('#td-prev-amount').innerHTML = previousSearchTxt;
             //TODO: Call API with saved parameters
-
-            var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-            xmlhttp.open("POST", "http://104.196.221.188:8080/api/v1/research/");
-            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xmlhttp.send(JSON.stringify({name:"John Rambo", time:"2pm"}));
-
-
+            // Send Message to background.js to POST Object
+            var port = chrome.runtime.connect({name: "mortgage"});
+            port.postMessage(objectToApi);
+            
         } else {
             chrome.storage.sync.set({'value': []}, function () {
               console.log('prevSavedValueArray is reset to empty array');
