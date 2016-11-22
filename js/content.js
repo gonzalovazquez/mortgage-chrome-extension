@@ -85,6 +85,37 @@
 
     // Show monthly payments
     document.querySelector('#td-results').style.display = 'block';
+
+    // Chart
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Loan", "Cost of Borrowing"],
+                datasets: [{
+                    label: '$',
+                    data: [principalAmount, monthlyPayments * numberOfPayments],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+      });
   }
 
   // Save Research
