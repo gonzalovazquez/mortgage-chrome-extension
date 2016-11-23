@@ -1,2 +1,3 @@
-# td-extension
-An extension for contextual help for TD customers
+# Mortgage Chrome Extension
+
+Calculate your monthly payments with this easy to use Chrome Extension.
