@@ -6,6 +6,7 @@
   var prevSavedValueArray = [];
   var selectedAmount = 0;
   var openModal;
+  var objectToApi = {};
 
   // Listening to message from context menu
   chrome.runtime.onMessage.addListener(
@@ -14,6 +15,17 @@
       }
   );
 
+
+  // UUID Generator
+  function guid() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+ }
 
   // Checking for saved searches
   (function () {
@@ -85,6 +97,57 @@
 
     // Show monthly payments
     document.querySelector('#td-results').style.display = 'block';
+
+    var costOfBorrowing = (monthlyPayments * numberOfPayments) - principalAmount;
+
+    // Chart
+      var ctx = document.getElementById("myChart");
+      var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Loan", "Cost of Borrowing"],
+                datasets: [{
+                    label: '$',
+                    data: [principalAmount, costOfBorrowing],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+      });
+
+      // Set object
+    objectToApi = {
+            "entry": {
+                "quote": {
+                "amount": principalAmount,
+                "interestRate": document.querySelector('#td-rate').value,
+                "termInMonths": numberOfPayments
+                },
+                    "context": {
+                        "itemLocation": window.location.href,
+                        "site": window.location.hostname
+                    }
+            },
+            "header": {
+                "requestId": guid()
+            }
+        }
   }
 
   // Save Research
@@ -119,6 +182,10 @@
             });
             document.querySelector('#td-prev-amount').innerHTML = previousSearchTxt;
             //TODO: Call API with saved parameters
+            // Send Message to background.js to POST Object
+            var port = chrome.runtime.connect({name: "mortgage"});
+            port.postMessage(objectToApi);
+            
         } else {
             chrome.storage.sync.set({'value': []}, function () {
               console.log('prevSavedValueArray is reset to empty array');

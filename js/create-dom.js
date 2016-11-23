@@ -114,6 +114,8 @@
   collapseBtn.setAttribute('class', 'td-widget-pane-toggle-button');
   collapseContainer.appendChild(collapseBtn);
 
+  var chartContainer = document.createElement('div');
+  chartContainer.setAttribute('id', 'chart-container');
 
   // Append childs to main container
   mainContainer.appendChild(mainTitle);
@@ -127,4 +129,9 @@
   mainContainer.appendChild(collapseContainer);
   // Last step: append calculator
   document.body.appendChild(mainContainer);
+
+  // Chart
+  chartContainer.innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>';
+  innerContainer2.appendChild(chartContainer);
+
 })();
