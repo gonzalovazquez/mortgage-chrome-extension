@@ -8,6 +8,9 @@ xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 // GET Stock Symbol
 var xmlhttp_GET = new XMLHttpRequest();   // new HttpRequest instance 
 
+// GET NEWS Symbol
+var xmlhttp_GET_NEWS = new XMLHttpRequest();   // new HttpRequest instance 
+
 
 chrome.contextMenus.create({
   "title": "TD This",
@@ -37,25 +40,25 @@ chrome.runtime.onConnect.addListener(function(port) {
       xmlhttp_GET.send();
       xmlhttp_GET.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-           var stockInfo = this.responseText;
-            console.log(stockInfo);
-              chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-                var activeTab = tabs[0];
-                console.log('current tab', activeTab);
-                console.log('Sending message back', stockInfo);
-                chrome.tabs.sendMessage(activeTab.id, {"stock_info": stockInfo});
-              });
+            var stockInfo = this.responseText;
+            var name = 'Google';
+            console.log('Sending message back', stockInfo);
+            xmlhttp_GET_NEWS.open("GET", "https://api.cognitive.microsoft.com/bing/v5.0/news/search?q=" + name +"&count=1&offset=0&mkt=en-us&safeSearch=Moderate", true);
+            xmlhttp_GET_NEWS.setRequestHeader("Ocp-Apim-Subscription-Key", "1dc5ab75449345b4b9f9613a809fe82c");
+            xmlhttp_GET_NEWS.send();
+            xmlhttp_GET_NEWS.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                var companyInfo = this.responseText;
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                  var activeTab = tabs[0];
+                  console.log('current tab', activeTab);
+                  console.log('Sending message back', companyInfo);
+                  chrome.tabs.sendMessage(activeTab.id, {"stock_info": stockInfo, "company_info": companyInfo});
+                });
+              }
+            }
         }
       };
     });
   }
 });
-
-
-
-
-
-
-
-  
-

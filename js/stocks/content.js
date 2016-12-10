@@ -15,7 +15,7 @@
           if (request.message) {
             openModal(request.message);
           } else if (request.stock_info) {
-            populateModal(request.stock_info);
+            populateModal(request.stock_info, request.company_info);
           }
       }
   );
@@ -32,9 +32,10 @@
   };
 
   // Populate Modal
-  populateModal = function(data) {
-    console.log(data);
-    document.querySelector('input#td-balance').value = data;
+  populateModal = function(stockInfo, companyInfo) {
+    console.log(stockInfo, companyInfo);
+    document.querySelector('p#stock-data').innerHTML = stockInfo;
+    document.querySelector('p#company-data').innerHTML = companyInfo;
     document.querySelector('div#td-widget-pane').style.display = 'block';
     document.querySelector('div#td-widget-pane').classList.add('td-slide');
   }
