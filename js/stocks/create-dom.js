@@ -4,7 +4,7 @@
   mainContainer.setAttribute('id', 'td-widget-pane');
   var mainTitle = document.createElement('h1');
   mainTitle.setAttribute('id', 'td-title');
-  mainTitle.innerHTML = 'Stock Viewer';
+  mainTitle.innerHTML = 'Company Information';
   var banner = document.createElement('span');
   banner.setAttribute('class', 'td-banner');
   var image = document.createElement('img');
@@ -14,25 +14,27 @@
 
   var innerContainer = document.createElement('div');
   innerContainer.setAttribute('class', 'td-inner-container');
+  var companyName = document.createElement('p');
+  companyName.setAttribute('id', 'company-name');
   var stockData = document.createElement('p');
   stockData.setAttribute('id', 'stock-data');
   var companyData = document.createElement('p');
   companyData.setAttribute('id', 'company-data');
+  var companyNews = document.createElement('p');
+  companyNews.setAttribute('id', 'company-news');
+
+  innerContainer.appendChild(companyName);
   innerContainer.appendChild(stockData);
   innerContainer.appendChild(companyData);
+  innerContainer.appendChild(companyNews);
 
 
   var buttonContainer = document.createElement('div');
   buttonContainer.setAttribute('id', 'td-button-container');
-  var calculateButton = document.createElement('button');
-  calculateButton.setAttribute('class', 'td-btn td-btn-2 td-btn-2a td-btn-fl');
-  calculateButton.setAttribute('id', 'td-calculate');
-  calculateButton.innerHTML = 'Calculate';
   var saveButton = document.createElement('button');
   saveButton.setAttribute('class', 'td-btn td-btn-2 td-btn-2a');
   saveButton.setAttribute('id', 'td-save');
   saveButton.innerHTML = 'Save';
-  buttonContainer.appendChild(calculateButton);
   buttonContainer.appendChild(saveButton);
 
 
@@ -53,8 +55,8 @@
   mainContainer.appendChild(innerContainer);
   mainContainer.appendChild(banner);
   mainContainer.appendChild(image);
-  mainContainer.appendChild(buttonContainer);
   mainContainer.appendChild(innerContainer2);
+  mainContainer.appendChild(buttonContainer);
   mainContainer.appendChild(collapseContainer);
   // Last step: append calculator
   document.body.appendChild(mainContainer);

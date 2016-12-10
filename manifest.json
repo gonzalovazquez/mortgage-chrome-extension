@@ -30,7 +30,7 @@
                 "https://www.realtor.ca/**", "http://www.realtor.ca/**"
             ],
             "css": [
-                "css/replace-price-tags.css"
+                "css/mortgage/replace-price-tags.css"
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",
@@ -43,7 +43,7 @@
                 "https://www.bloomberg.com/**", "http://www.bloomberg.com/**"
             ],
             "css": [
-                "css/replace-price-tags.css"
+                "css/stocks/main.css"
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",

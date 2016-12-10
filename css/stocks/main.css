@@ -1,0 +1,157 @@
+/* General Design */
+
+div#td-widget-pane > p, strong, h1, h2, h3, h4 {
+  font-family: ProximaNovaRgRegular,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Verdana,sans-serif;
+  line-height: 1.4;
+}
+div#td-widget-pane > strong {
+  font-size: 1.2em;
+}
+
+#td-widget-pane {
+    opacity: 0.9 !important;
+    background-color: #fff;
+    opacity: 0.8;
+    height: 100%;
+    box-shadow: 0 0 20px rgba(0,0,0,1);
+    width: 408px;
+    position: fixed;
+    top: 0px;
+    right: -408px;
+    z-index: 100;
+    -webkit-transform: translateX(0px);
+    transform: translateX(0px);
+    transition-property: -webkit-transform,transform,opacity;
+    transition-duration: 0.2s;
+    transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+}
+
+div.td-inner-container {
+  padding: 10px;
+}
+
+div.td-inner-container > p {
+  padding: 10px;
+}
+
+p#company-name {
+  font-size: 25px;
+}
+
+.td-widget-pane-toggle-button-container {
+    position: absolute;
+    z-index: 0;
+    top: 12px;
+    left: -24px;
+    right: 100%;
+}
+
+.td-widget-pane-toggle-button {
+    width: 23px;
+    height: 48px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.9);
+}
+
+.td-widget-pane-toggle-button::after {
+  content: "<";
+}
+
+.td-widget-pane-visible .td-widget-pane-toggle-button-container {
+    display: block;
+}
+
+.td-slide {
+    -webkit-animation: slide 0.5s;
+    -webkit-animation-delay: 1s;
+    animation: slide 0.5s;
+    animation-delay: 1s;
+    right: 0 !important;
+}
+
+/* Custom style for modal */
+
+h1#td-title {
+  margin-left: 6px;
+  margin-top: 30px;
+  font-size: 29px;
+  font-weight: bold;
+  color: black;
+}
+
+img.td-logo {
+  width: 50px;
+  top: 15px;
+  position: absolute;
+  right: 35px;
+}
+
+span.td-banner {
+  z-index: -10000;
+  background-color: #76c76d;
+  width: 378px;
+  height: 50px;
+  position: absolute;
+  top: 12px;
+  padding-right: 30px;
+  left: 0;
+}
+
+label.td-mortgage-label {
+  width: 150px;
+  display: inline-block;
+}
+
+p.td-paragraph {
+  font-size: 18px;
+}
+
+/* Button */
+#td-button-container {
+  text-align: center;
+}
+
+.td-btn {
+    width: 150px;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 10px 15px 10px 15px;
+    display: inline-block;
+    margin: 10px 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.td-btn-2 {
+	background: #2DB94D;
+	color: #fff;
+	box-shadow: 0 6px #3F6B40;
+	-webkit-transition: none;
+	-moz-transition: none;
+	transition: none;
+}
+
+/* Button 2a */
+.td-btn-2a {
+	border-radius: 0 0 5px 5px;
+}
+
+.td-btn-2a:hover {
+	box-shadow: 0 4px #3F6B40;
+	top: 2px;
+}
+
+.td-btn-2a:active {
+	box-shadow: 0 0 #3F6B40;
+	top: 6px;
+}

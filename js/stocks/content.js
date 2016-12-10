@@ -34,8 +34,18 @@
   // Populate Modal
   populateModal = function(stockInfo, companyInfo) {
     console.log(stockInfo, companyInfo);
-    document.querySelector('p#stock-data').innerHTML = stockInfo;
-    document.querySelector('p#company-data').innerHTML = companyInfo;
+    // Format Data
+    var stockInfo = JSON.parse(stockInfo.replace(/[^\\dA-Za-z0-9{}," :.]/g, ""));
+    var newsTitle = JSON.parse(companyInfo).value[0].name;
+    var newsBody = JSON.parse(companyInfo).value[0].description;
+
+
+    document.querySelector('p#company-name').innerHTML = 'Google';  
+    document.querySelector('p#stock-data').innerHTML = '<strong>Stock Price:</strong> $' + stockInfo.l;
+    document.querySelector('p#company-data').innerHTML = newsTitle;
+    document.querySelector('p#company-news').innerHTML = newsBody;  
+
+    // Show Pane
     document.querySelector('div#td-widget-pane').style.display = 'block';
     document.querySelector('div#td-widget-pane').classList.add('td-slide');
   }
