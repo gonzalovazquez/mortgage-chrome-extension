@@ -27,15 +27,28 @@
     "content_scripts": [
         {
             "matches": [
-                "<all_urls>"
+                "https://www.realtor.ca/**", "http://www.realtor.ca/**"
             ],
             "css": [
                 "css/replace-price-tags.css"
             ],
             "js": [
-                "js/Chart.bundle.min.js",
-                "js/create-dom.js",
-                "js/content.js"
+                "js/vendor/Chart.bundle.min.js",
+                "js/mortgage/create-dom.js",
+                "js/mortgage/content.js"
+            ]
+        },
+        {
+            "matches": [
+                "https://www.bloomberg.com/**", "http://www.bloomberg.com/**"
+            ],
+            "css": [
+                "css/replace-price-tags.css"
+            ],
+            "js": [
+                "js/vendor/Chart.bundle.min.js",
+                "js/stocks/create-dom.js",
+                "js/stocks/content.js"
             ]
         }
     ]
