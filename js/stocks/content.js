@@ -35,13 +35,13 @@
   populateModal = function(stockInfo, companyInfo) {
     console.log(stockInfo, companyInfo);
     // Format Data
-    var stockInfo = JSON.parse(stockInfo.replace(/[^\\dA-Za-z0-9{}," :.]/g, ""));
+    var stockInfo = JSON.parse(stockInfo).query.results.quote;
     var newsTitle = JSON.parse(companyInfo).value[0].name;
     var newsBody = JSON.parse(companyInfo).value[0].description;
 
 
     document.querySelector('p#company-name').innerHTML = 'Google';  
-    document.querySelector('p#stock-data').innerHTML = '<strong>Stock Price:</strong> $' + stockInfo.l;
+    document.querySelector('p#stock-data').innerHTML = '<strong>Stock Price:</strong> $' + stockInfo.Bid;
     document.querySelector('p#company-data').innerHTML = newsTitle;
     document.querySelector('p#company-news').innerHTML = newsBody;  
 
