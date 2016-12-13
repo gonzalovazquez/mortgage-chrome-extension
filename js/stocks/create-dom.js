@@ -22,10 +22,13 @@
   companyData.setAttribute('id', 'company-data');
   var companyNews = document.createElement('p');
   companyNews.setAttribute('id', 'company-news');
+  var companyImage = document.createElement('img');
+  companyImage.setAttribute('id', 'company-image');
 
   innerContainer.appendChild(companyName);
   innerContainer.appendChild(stockData);
   innerContainer.appendChild(companyData);
+  innerContainer.appendChild(companyImage);
   innerContainer.appendChild(companyNews);
 
 
