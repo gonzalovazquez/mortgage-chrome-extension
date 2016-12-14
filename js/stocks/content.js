@@ -33,17 +33,19 @@
 
   // Populate Modal
   populateModal = function(stockInfo, companyInfo) {
-    console.log(stockInfo, companyInfo);
+    console.log(JSON.parse(stockInfo), JSON.parse(companyInfo));
     // Format Data
+    var formalizedCompanyData = JSON.parse(companyInfo).value[0];
     var stockInfo = JSON.parse(stockInfo).query.results.quote;
-    var newsTitle = JSON.parse(companyInfo).value[0].name;
-    var newsBody = JSON.parse(companyInfo).value[0].description;
+    var newsTitle = formalizedCompanyData.name;
+    var newsBody = formalizedCompanyData.description;
 
 
     document.querySelector('p#company-name').innerHTML = 'Google';  
     document.querySelector('p#stock-data').innerHTML = '<strong>Stock Price:</strong> $' + stockInfo.Bid;
     document.querySelector('p#company-data').innerHTML = newsTitle;
-    document.querySelector('p#company-news').innerHTML = newsBody;  
+    document.querySelector('p#company-news').innerHTML = newsBody;
+    document.querySelector('img#company-image').setAttribute('src', formalizedCompanyData.image.thumbnail.contentUrl);
 
     // Show Pane
     document.querySelector('div#td-widget-pane').style.display = 'block';

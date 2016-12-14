@@ -27,7 +27,7 @@
     "content_scripts": [
         {
             "matches": [
-                "https://www.realtor.ca/**", "http://www.realtor.ca/**"
+                "https://www.realtor.ca/**", "http://www.realtor.ca/**", "http://www.remax.ca/**", "http://www.autotrader.ca/**"
             ],
             "css": [
                 "css/mortgage/replace-price-tags.css"
