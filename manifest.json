@@ -34,9 +34,10 @@
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",
-                "js/mortgage/common.js",
-                "js/mortgage/create-dom.js",
-                "js/mortgage/content.js"
+                "js/core/utils/Common.js",
+                "js/core/Mortgage.js",
+                "js/core/Stocks.js",
+                "js/core/content.js"
             ]
         },
         {
@@ -48,9 +49,10 @@
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",
-                "js/mortgage/common.js",
-                "js/mortgage/create-dom.js",
-                "js/mortgage/content.js"
+                "js/core/utils/Common.js",
+                "js/core/Mortgage.js",
+                "js/core/Stocks.js",
+                "js/core/content.js"
             ]
         }
     ]
