@@ -20,7 +20,6 @@
       }
   );
 
-
   // Grab price and mouse event and insert into DOM modal
   openModal = function(ticker){
     console.log('Open!', ticker);

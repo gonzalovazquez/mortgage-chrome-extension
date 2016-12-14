@@ -1,11 +1,13 @@
 // global namespace
 var MORTGAGE = MORTGAGE || {};
+var STOCKS = STOCKS || {};
 
-bar
+// global in-memory object
+var values = {};
 
 // sub namespace
 MORTGAGE.methods = {};
-MORTGAGE.event = {};
+STOCKS.methods = {};
 
 MORTGAGE.methods = {
   domCreation: function() {
@@ -144,32 +146,17 @@ MORTGAGE.methods = {
     chartContainer.innerHTML = '<canvas id="myChart" width="400" height="400"></canvas>';
     innerContainer2.appendChild(chartContainer);
   },
-  addEventHandler: function() {
-    // Expand and collapse modal
-    var toggleButton = document.querySelector('.td-widget-pane-toggle-button');
-    toggleButton.addEventListener('click', toggleModal, false);
-    function toggleModal() {
-      console.log('Toggle modal');
-      var leftpane = document.querySelector('#td-widget-pane');
-      
-      if (leftpane.classList[0] === 'td-slide') {
-        leftpane.classList.remove('td-slide');
-      } else {
-        leftpane.classList.add('td-slide');
-      }
-    }
-  },
   calculateMortgage: function() {
     var calculate = document.querySelector('#td-calculate');
-    calculate.addEventListener('click', calculate, false);
+    calculate.addEventListener('click', calculateMonthlyPayments, false);
 
-    var returnData = function calculateMortgage() {
+    function calculateMonthlyPayments() {
       //TODO: Improve mortgage calculation
       var principalAmount = document.querySelector('input#td-balance').value.replace(/[,$]/g,""),
           interestRate = document.querySelector('#td-rate').value / 100 / 12,
           period = document.querySelector('#td-period').value,
           years = document.querySelector('#td-term').value,
-          numberOfPayments = years * period;
+          numberOfPayments = parseInt(years, 10) * parseInt(period, 10);
         
       var leftSideofEquation = interestRate * Math.pow((1 + interestRate), numberOfPayments);
       var rightSideofEquation = Math.pow(1 + interestRate, numberOfPayments) - 1;
@@ -177,6 +164,7 @@ MORTGAGE.methods = {
 
       // Change value dynamically
       //TODO: Add comma separation
+      console.log(monthlyPayments, 'monthlyPayments');
       document.querySelector('span.td-amount').innerHTML = '$' + monthlyPayments;
 
       // Show monthly payments
@@ -184,7 +172,7 @@ MORTGAGE.methods = {
       var costOfBorrowing = (monthlyPayments * numberOfPayments) - principalAmount;
 
       // Create object with all values
-      var values = {
+      values = {
         "principalAmount": principalAmount, 
         "interestRate": interestRate, 
         "period": period, 
@@ -223,42 +211,101 @@ MORTGAGE.methods = {
                 }
             }
       });
-
-      return values;
-
     };
-
-    debugger;
-    return returnData;
   },
-  saveAction: function(values) {
-    console.log(values);
-    // var saveButton = document.querySelector('#td-save');
-    // saveButton.addEventListener('click', saveResults, false);
-    // // Save Research
-    // function saveResults() {
-    //     objectToApi = {
-    //             "entry": {
-    //                 "quote": {
-    //                 "amount": principalAmount,
-    //                 "interestRate": document.querySelector('#td-rate').value,
-    //                 "termInMonths": numberOfPayments
-    //                 },
-    //                     "context": {
-    //                         "itemLocation": window.location.href,
-    //                         "site": window.location.hostname
-    //                     }
-    //             },
-    //             "header": {
-    //                 "requestId": COMMON.commonMethod.guid()
-    //             }
-    //     }
-    //     //TODO: Call API with saved parameters
-    //     // Send Message to background.js to POST Object
-    //     var port = chrome.runtime.connect({name: "mortgage"});
-    //     port.postMessage(objectToApi);
+  saveAction: function() {
+    var saveButton = document.querySelector('#td-save');
+    saveButton.addEventListener('click', saveResults, false);
+    //Save Research
+    function saveResults() {
+         objectToApi = {
+            "entry": {
+                "quote": {
+                  "amount": values.principalAmount,
+                  "interestRate": document.querySelector('#td-rate').value,
+                  "termInMonths": values.numberOfPayments
+                },
+              "context": {
+                "itemLocation": window.location.href,
+                "site": window.location.hostname
+              }
+            },
+            "header": {
+              "requestId": COMMON.commonMethod.guid()
+            }
+         }
+         //TODO: Call API with saved parameters
+         //Send Message to background.js to POST Object
+         var port = chrome.runtime.connect({name: "mortgage"});
+         port.postMessage(objectToApi);
+         console.log('Saved', objectToApi);
+     }
+  }
+};
 
-    //     console.log('Saved');
-    // }
+STOCKS.methods = {
+  domCreation: function() {
+    var mainContainer = document.createElement('div');
+    mainContainer.setAttribute('id', 'td-widget-pane');
+    var mainTitle = document.createElement('h1');
+    mainTitle.setAttribute('id', 'td-title');
+    mainTitle.innerHTML = 'Company Information';
+    var banner = document.createElement('span');
+    banner.setAttribute('class', 'td-banner');
+    var image = document.createElement('img');
+    image.setAttribute('class', 'td-logo');
+    image.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Toronto-Dominion_Bank_logo.svg');
+
+
+    var innerContainer = document.createElement('div');
+    innerContainer.setAttribute('class', 'td-inner-container');
+    var companyName = document.createElement('p');
+    companyName.setAttribute('id', 'company-name');
+    var stockData = document.createElement('p');
+    stockData.setAttribute('id', 'stock-data');
+    var companyData = document.createElement('p');
+    companyData.setAttribute('id', 'company-data');
+    var companyNews = document.createElement('p');
+    companyNews.setAttribute('id', 'company-news');
+    var companyImage = document.createElement('img');
+    companyImage.setAttribute('id', 'company-image');
+
+    innerContainer.appendChild(companyName);
+    innerContainer.appendChild(stockData);
+    innerContainer.appendChild(companyData);
+    innerContainer.appendChild(companyImage);
+    innerContainer.appendChild(companyNews);
+
+
+    var buttonContainer = document.createElement('div');
+    buttonContainer.setAttribute('id', 'td-button-container');
+    var saveButton = document.createElement('button');
+    saveButton.setAttribute('class', 'td-btn td-btn-2 td-btn-2a');
+    saveButton.setAttribute('id', 'td-save');
+    saveButton.innerHTML = 'Save';
+    buttonContainer.appendChild(saveButton);
+
+
+
+    var innerContainer2 = document.createElement('div');
+    innerContainer2.setAttribute('class', 'td-inner-container');
+    
+    var collapseContainer = document.createElement('div');
+    collapseContainer.setAttribute('class', 'td-widget-pane-toggle-button-container');
+    var collapseBtn = document.createElement('button');
+    collapseBtn.setAttribute('class', 'td-widget-pane-toggle-button');
+    collapseContainer.appendChild(collapseBtn);
+
+
+    // Append childs to main container
+    mainContainer.appendChild(mainTitle);
+    mainContainer.appendChild(innerContainer);
+    mainContainer.appendChild(banner);
+    mainContainer.appendChild(image);
+    mainContainer.appendChild(innerContainer2);
+    mainContainer.appendChild(buttonContainer);
+    mainContainer.appendChild(collapseContainer);
+    // Last step: append calculator
+    document.body.appendChild(mainContainer);
   }
 };
