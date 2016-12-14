@@ -34,6 +34,7 @@
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",
+                "js/mortgage/common.js",
                 "js/mortgage/create-dom.js",
                 "js/mortgage/content.js"
             ]
