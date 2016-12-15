@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "TD Extension",
     "description": "This extensions enables TD features on any website",
-    "version": "1.4",
+    "version": "1.5",
     "browser_action": {
         "default_icon": "td-icon.png"
     },
@@ -34,8 +34,10 @@
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",
-                "js/mortgage/create-dom.js",
-                "js/mortgage/content.js"
+                "js/core/utils/Common.js",
+                "js/core/Mortgage.js",
+                "js/core/Stocks.js",
+                "js/core/content.js"
             ]
         },
         {
@@ -47,8 +49,10 @@
             ],
             "js": [
                 "js/vendor/Chart.bundle.min.js",
-                "js/stocks/create-dom.js",
-                "js/stocks/content.js"
+                "js/core/utils/Common.js",
+                "js/core/Mortgage.js",
+                "js/core/Stocks.js",
+                "js/core/content.js"
             ]
         }
     ]

@@ -11,18 +11,40 @@ var xmlhttp_GET = new XMLHttpRequest();   // new HttpRequest instance
 // GET NEWS Symbol
 var xmlhttp_GET_NEWS = new XMLHttpRequest();   // new HttpRequest instance 
 
+// Create Context Menu
+var parent = chrome.contextMenus.create(
+  {
+    "title": "TD Concierge",
+    "contexts": ["all"],
+    "onclick": genericOnClick
+  }
+);
 
-chrome.contextMenus.create({
-  "title": "TD This",
-  "contexts": ["page", "selection", "image", "link"],
-  "onclick" : genericOnClick
-});
+var child1 = chrome.contextMenus.create(
+  {
+    "id": "mortgage",
+    "title": "Mortgage Calculator",
+    "contexts": ["all"],
+    "onclick" : genericOnClick,
+    "parentId": parent
+  }
+);
+
+var child2 = chrome.contextMenus.create(
+  {
+    "id": "stocks",
+    "title": "Stock Viewer",
+    "contexts": ["all"],
+    "onclick" : genericOnClick,
+    "parentId": parent
+  }
+);
 
 function genericOnClick(e) {
   var contextEvent = e;
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     var activeTab = tabs[0];
-    chrome.tabs.sendMessage(activeTab.id, {"message": contextEvent.selectionText});
+    chrome.tabs.sendMessage(activeTab.id, {"type": contextEvent.menuItemId, "message": contextEvent.selectionText});
   });
 }
 
