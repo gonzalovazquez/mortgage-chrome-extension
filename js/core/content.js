@@ -10,14 +10,19 @@
   // Listening to message from context menu
   chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
+        var widget = document.querySelector('#td-widget-pane');
         if (request.type === 'mortgage') {
-            MORTGAGE.methods.domCreation();
+            if (!widget) {
+                MORTGAGE.methods.domCreation();
+            }
             COMMON.commonMethod.collapsePane();
             MORTGAGE.methods.calculateMortgage();
             initializeMortgageModal(request.message);
             MORTGAGE.methods.saveAction();
         } else if (request.type === 'stocks') {
-            STOCKS.methods.domCreation();
+            if (!widget) {
+                STOCKS.methods.domCreation();
+            }
             COMMON.commonMethod.collapsePane();
             initializeStockModal(request.message);
         } else if (request.stock_info) {
@@ -30,8 +35,9 @@
   initializeMortgageModal = function(amount){
     console.log('Open!', amount);
     document.querySelector('input#td-balance').value = '$' + amount;
-    document.querySelector('div#td-widget-pane').style.display = 'block';
-    document.querySelector('div#td-widget-pane').classList.add('td-slide');
+
+    // Show Pane
+    slideOut();
   };
 
   // Grab price and mouse event and insert into DOM modal
@@ -59,6 +65,11 @@
     document.querySelector('img#company-image').setAttribute('src', formalizedCompanyData.image.thumbnail.contentUrl);
 
     // Show Pane
+    slideOut();
+  }
+
+  // Slide Out Modal
+  function slideOut() {
     document.querySelector('div#td-widget-pane').style.display = 'block';
     document.querySelector('div#td-widget-pane').classList.add('td-slide');
   }
